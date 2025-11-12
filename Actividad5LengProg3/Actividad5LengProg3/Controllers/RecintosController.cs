@@ -88,15 +88,5 @@ namespace Actividad5LengProg3.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-
-        public async Task<IActionResult> Detalle(string codigo)
-        {
-            if (codigo == null) return NotFound();
-            var recinto = await _context.Recintos
-                .Include(r => r.Estudiantes)
-                .FirstOrDefaultAsync(r => r.Codigo == codigo);
-            if (recinto == null) return NotFound();
-            return View(recinto);
-        }
     }
 }

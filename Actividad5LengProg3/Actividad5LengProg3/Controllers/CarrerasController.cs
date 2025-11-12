@@ -87,16 +87,5 @@ namespace Actividad5LengProg3.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-
-        public async Task<IActionResult> Detalle(string codigo)
-        {
-            if (codigo == null) return NotFound();
-            var carrera = await _context.Carreras
-                .Include(c => c.Estudiantes)
-                .FirstOrDefaultAsync(c => c.Codigo == codigo);
-
-            if (carrera == null) return NotFound();
-            return View(carrera);
-        }
     }
 }
