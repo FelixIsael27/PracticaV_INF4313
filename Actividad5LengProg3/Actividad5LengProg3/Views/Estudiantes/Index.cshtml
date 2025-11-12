@@ -1,0 +1,103 @@
+﻿@model Actividad5LengProg3.Models.EstudianteViewModel
+@{
+    ViewData["Title"] = "Registro de Estudiante";
+}
+
+<h2>Registro de Estudiante</h2>
+
+<form asp-action="Registrar" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="NombreCompleto"></label>
+        <input asp-for="NombreCompleto" class="form-control" />
+        <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Matricula"></label>
+        <input asp-for="Matricula" class="form-control" />
+        <span asp-validation-for="Matricula" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Carrera"></label>
+        <select asp-for="Carrera" class="form-control" asp-items="ViewBag.Carreras">
+            <option value="">-- Seleccione una Carrera --</option>
+        </select>
+        <span asp-validation-for="Carrera" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Recinto"></label>
+        <select asp-for="Recinto" class="form-control" asp-items="ViewBag.Recintos">
+            <option value="">-- Seleccione el Recinto --</option>
+        </select>
+        <span asp-validation-for="Recinto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CorreoInstitucional"></label>
+        <input asp-for="CorreoInstitucional" class="form-control" />
+        <span asp-validation-for="CorreoInstitucional" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Celular"></label>
+        <input asp-for="Celular" class="form-control" />
+        <span asp-validation-for="Celular" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Telefono"></label>
+        <input asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Direccion"></label>
+        <input asp-for="Direccion" class="form-control" />
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FechaNacimiento"></label>
+        <input asp-for="FechaNacimiento" class="form-control" type="date" />
+        <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Genero"></label>
+        <select asp-for="Genero" class="form-control" asp-items="ViewBag.Generos">
+            <option value="">-- Seleccione su Género --</option>
+        </select>
+        <span asp-validation-for="Genero" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Turno"></label>
+        <select asp-for="Turno" class="form-control" asp-items="ViewBag.Turnos">
+            <option value="">-- Seleccione el Turno --</option>
+        </select>
+        <span asp-validation-for="Turno" class="text-danger"></span>
+    </div>
+
+    <div class="form-check">
+        <input asp-for="EstaBecado" class="form-check-input" />
+        <label asp-for="EstaBecado" class="form-check-label"></label>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PorcentajeBeca"></label>
+        <input asp-for="PorcentajeBeca" class="form-control" type="number" min="0" max="100" />
+        <span asp-validation-for="PorcentajeBeca" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <a asp-action="Lista" class="btn btn-secondary">Ver Lista</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

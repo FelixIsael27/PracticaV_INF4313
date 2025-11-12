@@ -1,0 +1,35 @@
+﻿@model List<Actividad5LengProg3.Models.CarreraViewModel>
+@{
+    ViewData["Title"] = "Lista de Carreras";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p><a asp-action="Index" class="btn btn-primary">Nueva Carrera</a></p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Créditos</th>
+            <th>Materias</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var carrera in Model)
+        {
+            <tr>
+                <td>@carrera.Codigo</td>
+                <td>@carrera.Nombre</td>
+                <td>@carrera.CantidadCreditos</td>
+                <td>@carrera.CantidadMaterias</td>
+                <td>
+                    <a asp-action="Editar" asp-route-codigo="@carrera.Codigo" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Eliminar" asp-route-codigo="@carrera.Codigo" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

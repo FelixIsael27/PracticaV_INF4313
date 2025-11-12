@@ -1,0 +1,34 @@
+﻿@model List<Actividad5LengProg3.Models.RecintoViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Recintos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p><a asp-action="Index" class="btn btn-primary">Nuevo Recinto</a></p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recinto in Model)
+        {
+            <tr>
+                <td>@recinto.Codigo</td>
+                <td>@recinto.Nombre</td>
+                <td>@recinto.Direccion</td>
+                <td>
+                    <a asp-action="Editar" asp-route-codigo="@recinto.Codigo" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Eliminar" asp-route-codigo="@recinto.Codigo" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

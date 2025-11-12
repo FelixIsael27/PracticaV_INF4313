@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Actividad5LengProg3.Models.EstudianteViewModel>
+@{
+    ViewData["Title"] = "Lista de Estudiantes";
+}
+
+<h2>Lista de Estudiantes</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">@TempData["Mensaje"]</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<p>
+    <a asp-action="Index" class="btn btn-primary">Nuevo Estudiante</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Matrícula</th>
+            <th>Nombre</th>
+            <th>Carrera</th>
+            <th>Recinto</th>
+            <th>Correo</th>
+            <th>Celular</th>
+            <th>Turno</th>
+            <th>Becado</th>
+            <th>% Beca</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr><td colspan="10">No hay estudiantes registrados.</td></tr>
+        }
+        else
+        {
+            foreach (var e in Model)
+            {
+                <tr>
+                    <td>@e.Matricula</td>
+                    <td>@e.NombreCompleto</td>
+                    <td>@e.CarreraCod?.Nombre</td>
+                    <td>@e.RecintoCod?.Nombre</td>
+                    <td>@e.CorreoInstitucional</td>
+                    <td>@e.Celular</td>
+                    <td>@e.Turno</td>
+                    <td>@(e.EstaBecado ? "Sí" : "No")</td>
+                    <td>@(e.PorcentajeBeca?.ToString() ?? "-")</td>
+                    <td>
+                        <a asp-action="Editar" asp-route-matricula="@e.Matricula" class="btn btn-sm btn-warning">Editar</a>
+                        <a asp-action="Eliminar" asp-route-matricula="@e.Matricula" class="btn btn-sm btn-danger" onclick="return confirm('¿Quieres eliminar este estudiante?');">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
