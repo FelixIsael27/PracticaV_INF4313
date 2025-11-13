@@ -19,4 +19,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Actividad5LengProg3\Migrations\" />
+  </ItemGroup>
+
 </Project>

@@ -13,20 +13,19 @@ namespace Actividad5LengProg3.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Lista()
         {
-            var lista = await _context.Recintos.ToListAsync();
-            return View(lista);
+            return View(await _context.Recintos.ToListAsync());
         }
 
-        public IActionResult Crear()
+        public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Crear(RecintoViewModel recinto)
+        public async Task<IActionResult> Index(RecintoViewModel recinto)
         {
             if (ModelState.IsValid)
             {
@@ -37,7 +36,7 @@ namespace Actividad5LengProg3.Controllers
                 {
                     _context.Recintos.Add(recinto);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Lista));
                 }
             }
             return View(recinto);
@@ -66,7 +65,7 @@ namespace Actividad5LengProg3.Controllers
             _context.Recintos.Update(existente);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Lista));
         }
 
         public async Task<IActionResult> Eliminar(string codigo)
@@ -80,13 +79,13 @@ namespace Actividad5LengProg3.Controllers
                 if (tieneEstudiantes)
                 {
                     TempData["Error"] = "No se puede eliminar: existen estudiantes asignados a este recinto.";
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Lista));
                 }
 
                 _context.Recintos.Remove(recinto);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Lista));
         }
     }
 }
