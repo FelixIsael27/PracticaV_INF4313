@@ -55,3 +55,9 @@ VALUES ('SD-2020-05892', 'Juan Gonzalez', 'C001', 'R001', 'juanperez@email.com',
 select * from Recintos
 select * from Carreras
 select * from Estudiantes
+
+UPDATE Recintos
+SET Nombre = 'Recinto Santo Domingo', Direccion = 'Av. Isabela Aguiar'
+WHERE Codigo = 'R001';
+
+DELETE FROM Recintos WHERE Codigo = 'R001';
